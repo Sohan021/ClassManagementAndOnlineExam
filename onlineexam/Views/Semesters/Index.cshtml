@@ -1,0 +1,40 @@
+﻿@using onlineexam.Models
+@model IEnumerable<Semester>
+@{
+    ViewData["Title"] = "Index";
+}
+<br /><br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-success">Semesters</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus"></i>&nbsp; Add New???</a>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-success">
+            <th>
+                Name
+            </th>
+            <th>
+                Current Batch
+            </th>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Batches.Name</td>
+                @*<td>@item.Courses</td>*@
+                <td>
+                    <partial name="_ButtonPartial" model="@item.Id" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>

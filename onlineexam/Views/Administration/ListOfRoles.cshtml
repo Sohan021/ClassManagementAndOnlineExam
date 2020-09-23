@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+@{
+    ViewBag.Title = "All Roles";
+}
+<br /><br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-success">Roles</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="CreateRole" class="btn btn-success"><i class="fas fa-plus"></i>&nbsp; Add New???</a>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-success">
+            <th>
+                Name
+            </th>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <a asp-action="EditRole" class="btn btn-info" asp-route-id="@item.Id">Details</a>
+                </td>
+                <td>
+                    <div style="text-align:center">
+                        <span id="confirmDeleteSpan_@item.Id" style="display:none">
+                            <span>Are you sure you want to delete?</span>
+                            <button type="submit" class="btn btn-danger">Yes</button>
+                            <a href="#" class="btn btn-primary"
+                               onclick="confirmDelete('@item.Id', false)">No</a>
+                        </span>
+                        <span id="deleteSpan_@item.Id">
+                            <a href="#" class="btn btn-warning"
+                               onclick="confirmDelete('@item.Id', true)">Delete</a>
+                        </span>
+                    </div>
+                </td>
+                <td>
+                    <a asp-action="ListUsersInRole" class="btn btn-info" asp-route-id="@item.Id">List Of User</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @section Scripts {
+        <script src="~/js/custom.js"></script>
+    }
+</div>

@@ -1,0 +1,59 @@
+﻿@using onlineexam.Models
+@model IEnumerable<Course>
+@{
+    ViewData["Title"] = "Index";
+}
+<br /><br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-success">Course</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus"></i>&nbsp; Add Course???</a>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-success">
+            <th>
+                Course Name
+            </th>
+            <th>
+                Course Details
+            </th>
+            <th>
+                Teacher Name
+            </th>
+            <th>
+                Semester Name
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.CourseDetails</td>
+                <td>@item.Teachers.Name</td>
+                <td>@item.Semesters.Name</td>
+                <td>
+                    <partial name="_ButtonPartial" model="@item.Id" />
+                </td>
+                <td>
+                    <a asp-action="FileIndex" asp-controller="CourseDes" class="btn btn-info" asp-route-id="@item.Id">Upload File</a>
+                </td>
+                <td>
+                    <a asp-action="PostIndex" asp-controller="CourseDes" class="btn btn-info" asp-route-id="@item.Id">Create Post</a>
+                </td>
+                <td>
+                    <a asp-action="MakeExam" asp-controller="CourseDes" class="btn btn-info" asp-route-id="@item.Id">Make Question</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

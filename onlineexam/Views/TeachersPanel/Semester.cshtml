@@ -1,0 +1,24 @@
+﻿@model IEnumerable<onlineexam.Models.Semester>
+@{
+    ViewData["Title"] = "Semester";
+}
+<div class="card-deck">
+    @if (Model.Any())
+    {
+
+        <br />
+        foreach (var sem in Model)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h4 class="text-center">
+                        <a asp-action="SemCourseTeachr" asp-controller="TeachersPanel"
+                           class="btn btn-primary mb-3" style="width:auto" asp-route-id="@sem.Id">
+                            @sem.Name
+                        </a>
+                    </h4>
+                </div>
+            </div>
+        }
+    }
+</div>

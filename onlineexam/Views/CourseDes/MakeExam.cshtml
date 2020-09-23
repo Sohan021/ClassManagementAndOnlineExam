@@ -1,0 +1,66 @@
+﻿@model onlineexam.ViewModels.TestViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+<br />
+<h2 class="text-info">Add </h2>
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="p-4 rounded border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        @Html.HiddenFor(x => x.CourseId)
+        <h3>@ViewBag.message</h3>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="TestTitle"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="TestTitle" class="form-control" />
+            </div>
+            <span asp-validation-for="TestTitle" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="TotalQuestion"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="TotalQuestion" class="form-control" />
+            </div>
+            <span asp-validation-for="TotalQuestion" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="TotalMarks"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="TotalMarks" class="form-control" />
+            </div>
+            <span asp-validation-for="TotalMarks" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Starttime"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Starttime" class="form-control" />
+            </div>
+            <span asp-validation-for="Starttime" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="EndTime"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="EndTime" class="form-control" />
+            </div>
+            <span asp-validation-for="EndTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Save" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

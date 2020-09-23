@@ -1,0 +1,45 @@
+﻿@using onlineexam.Models
+@model IEnumerable<FileModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<br /><br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-success">Course</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="CreateFileUpload" class="btn btn-success" asp-route-id="@ViewBag.courseId"><i class="fas fa-plus"></i>&nbsp; Add Assignment???</a>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-success">
+            <th>
+                Title
+            </th>
+            <th>
+                File Name
+            </th>
+            <th>
+                Date_Time
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.FileName</td>
+                <td>@item.dateTime</td>
+                <td>
+                    <partial name="_ButtonPartial" model="@item.Id" />
+                </td>
+
+            </tr>
+        }
+    </table>
+</div>
